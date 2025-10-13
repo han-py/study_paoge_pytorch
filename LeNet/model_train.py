@@ -14,6 +14,7 @@ import pandas as pd
 # 训练代码较为公式化，可直接使用
 # 该代码可直接用于其他模型的训练，只需更改模型部分即可
 
+# 数据处理，训练集和验证集的划分
 def train_val_data_process():
     train_data = FashionMNIST(root='./data',
                               train=True,
@@ -34,6 +35,7 @@ def train_val_data_process():
     return train_dataloader, val_dataloader
 
 
+# 训练代码，训练和验证
 def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
     # 设定训练所用到的设备，有GPU用GPU没有GPU用CPU
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -164,6 +166,7 @@ def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
     return train_process
 
 
+# 可视化训练和验证的准确率和损失函数
 def matplot_acc_loss(train_process):
     # 显示每一次迭代后的训练集和验证集的损失函数和准确率
     plt.figure(figsize=(12, 4))
