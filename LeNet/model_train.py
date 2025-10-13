@@ -156,7 +156,7 @@ def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
         print("训练和验证耗费的时间{:.0f}m{:.0f}s".format(time_use//60, time_use%60))
 
     # 选择最优参数，保存最优参数的模型
-    torch.save(best_model_wts, "C:/Users/86159/Desktop/LeNet/best_model.pth")
+    torch.save(best_model_wts, R"C:\Users\HaPpY\Desktop\study_paoge_pytorch\LeNet/best_model.pth")  # 这里需要更改为自己的路径
 
     train_process = pd.DataFrame(data={"epoch":range(num_epochs),
                                        "train_loss_all":train_loss_all,
