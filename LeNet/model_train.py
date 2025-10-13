@@ -11,6 +11,7 @@ from model import LeNet
 import torch.nn as nn
 import pandas as pd
 
+# 训练模板代码
 # 训练代码较为公式化，可直接使用
 # 该代码可直接用于其他模型的训练，只需更改模型部分即可
 
