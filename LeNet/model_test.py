@@ -3,6 +3,8 @@ from torchvision import transforms
 from torchvision.datasets import FashionMNIST
 import torch.utils.data as Data
 
+from LeNet.model import LeNet
+
 
 def test_data_process():
     test_data = FashionMNIST(root='./data',
@@ -43,3 +45,12 @@ def test_model_process(model, test_dataloader):
 
     test_acc = test_correct.double().item() / test_num
     print("测试集的准确率为：", test_acc)
+
+
+if __name__ == '__main__':
+    model = LeNet()
+    # 添加weights_only=True参数以避免FutureWarning
+    model.load_state_dict(torch.load('best_model.pth', weights_only=True))
+
+    test_dataloader = test_data_process()
+    test_model_process(model, test_dataloader)
