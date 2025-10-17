@@ -24,12 +24,12 @@ def train_val_data_process():
 
     train_data, val_data = Data.random_split(train_data, [round(0.8*len(train_data)), round(0.2*len(train_data))])  # 80%作为训练集，20%作为验证集
     train_dataloader = Data.DataLoader(dataset=train_data,
-                                       batch_size=32,
+                                       batch_size=12,
                                        shuffle=True,
                                        num_workers=2)
 
     val_dataloader = Data.DataLoader(dataset=val_data,
-                                       batch_size=32,
+                                       batch_size=12,
                                        shuffle=True,
                                        num_workers=2)
 
