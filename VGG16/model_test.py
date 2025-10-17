@@ -31,7 +31,7 @@ def test_data_process():
     # download: True表示自动下载数据集
     test_data = FashionMNIST(root='./data',
                               train=False,
-                              transform=transforms.Compose([transforms.Resize(size=28), transforms.ToTensor()]),
+                              transform=transforms.Compose([transforms.Resize(size=224), transforms.ToTensor()]),
                               download=True)
 
     # 创建数据加载器

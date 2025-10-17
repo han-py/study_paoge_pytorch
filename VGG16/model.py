@@ -50,12 +50,24 @@ class VGG16(nn.Module):
 
         self.block6 = nn.Sequential(
             nn.Flatten(),
-            nn.Linear(512 * 7 * 7, 4096),
+            nn.Linear(512 * 7 * 7, 256),
             nn.ReLU(),
-            nn.Linear(4096, 4096),
+            nn.Dropout(0.5),
+            nn.Linear(256, 128),
             nn.ReLU(),
-            nn.Linear(4096, 10)
+            nn.Dropout(0.5),
+            nn.Linear(128, 10)   # 因为类别较小，神经元个数可以不需要太多
         )
+
+        for m in self.modules():
+            # print(m)
+            if isinstance(m, nn.Conv2d):
+                nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+                if m.bias is not None:
+                    nn.init.constant_(m.bias, 0)
+            elif isinstance(m, nn.Linear):
+                nn.init.normal_(m.weight, 0, 0.01)
+
 
     def forward(self, x):
         x = self.block1(x)
