@@ -19,7 +19,7 @@ import pandas as pd
 def train_val_data_process():
     train_data = FashionMNIST(root='./data',
                               train=True,
-                              transform=transforms.Compose([transforms.Resize(size=28), transforms.ToTensor()]),
+                              transform=transforms.Compose([transforms.Resize(size=224), transforms.ToTensor()]),
                               download=True)
 
     train_data, val_data = Data.random_split(train_data, [round(0.8*len(train_data)), round(0.2*len(train_data))])  # 80%作为训练集，20%作为验证集
@@ -192,5 +192,5 @@ if __name__ == '__main__':
     # 加载数据集
     train_data, val_data = train_val_data_process()
     # 利用现有的模型进行模型的训练
-    train_process = train_model_process(VGG16, train_data, val_data, num_epochs=100)  # num_epochs可自行设置，为训练的轮数
+    train_process = train_model_process(VGG16, train_data, val_data, num_epochs=20)  # num_epochs可自行设置，为训练的轮数
     matplot_acc_loss(train_process)
