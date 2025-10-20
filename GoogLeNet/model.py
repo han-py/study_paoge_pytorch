@@ -59,7 +59,7 @@ class Inception(nn.Module):
         self.p3_2 = nn.Conv2d(in_channels=c3[0], out_channels=c3[1], kernel_size=5, padding=2)
 
         # 路径4: 3x3最大池化 + 1x1卷积
-        self.p4_1 = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)
+        self.p4_1 = nn.MaxPool2d(kernel_size=3, stride=1, padding=1)  # 注意最大池化和平均池化的 stride: 步长，默认等于kernel_size
         self.p4_2 = nn.Conv2d(in_channels=in_channels, out_channels=c4, kernel_size=1)
 
     def forward(self, x):
