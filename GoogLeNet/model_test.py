@@ -101,34 +101,34 @@ if __name__ == '__main__':
 
     # 获取测试数据加载器
     test_dataloader = test_data_process()
-    # test_model_process(model, test_dataloader)
+    test_model_process(model, test_dataloader)
 
-    # 确定计算设备（GPU或CPU）
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = model.to(device)
-
-    # 定义FashionMNIST数据集的类别标签
-    classes = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
-    
-    # 关闭梯度计算
-    with torch.no_grad():
-        # 遍历测试数据加载器中的每个样本
-        for b_x, b_y in test_dataloader:
-            # 将数据移到指定设备上
-            b_x = b_x.to(device)
-            b_y = b_y.to(device)
-
-            # 设置模型为评估模式
-            model.eval()
-
-            # 前向传播得到输出
-            output = model(b_x)
-
-            # 获取预测结果（概率最大的类别索引）
-            pre_lab = torch.argmax(output, dim=1)
-            # 提取预测结果和真实标签的值
-            result = pre_lab.item()
-            label = b_y.item()
-
-            # 打印预测结果和真实标签对应的类别名称
-            print("预测结果为：", classes[result], "------", "真实标签为：", classes[label])
+    # # 确定计算设备（GPU或CPU）
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # model = model.to(device)
+    #
+    # # 定义FashionMNIST数据集的类别标签
+    # classes = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+    #
+    # # 关闭梯度计算
+    # with torch.no_grad():
+    #     # 遍历测试数据加载器中的每个样本
+    #     for b_x, b_y in test_dataloader:
+    #         # 将数据移到指定设备上
+    #         b_x = b_x.to(device)
+    #         b_y = b_y.to(device)
+    #
+    #         # 设置模型为评估模式
+    #         model.eval()
+    #
+    #         # 前向传播得到输出
+    #         output = model(b_x)
+    #
+    #         # 获取预测结果（概率最大的类别索引）
+    #         pre_lab = torch.argmax(output, dim=1)
+    #         # 提取预测结果和真实标签的值
+    #         result = pre_lab.item()
+    #         label = b_y.item()
+    #
+    #         # 打印预测结果和真实标签对应的类别名称
+    #         print("预测结果为：", classes[result], "------", "真实标签为：", classes[label])
