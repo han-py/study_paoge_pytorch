@@ -224,7 +224,7 @@ def train_model_process(model, train_dataloader, val_dataloader, num_epochs):
     # 选择最优参数，保存最优参数的模型
     model.load_state_dict(best_model_wts)
     # 保存最优模型参数到指定路径
-    torch.save(best_model_wts, "C:/Users/86159/Desktop/GoogLeNet-1/best_model.pth")
+    torch.save(best_model_wts, "./best_model.pth")
 
     # 构建训练过程记录DataFrame
     train_process = pd.DataFrame(data={"epoch":range(num_epochs),
