@@ -59,8 +59,8 @@ def train_val_data_process():
     # 定义数据集的路径
     ROOT_TRAIN = r'data\train'
 
-    # 定义数据标准化变换，参数为均值和标准差，保存到小数点后三位即可
-    normalize = transforms.Normalize([0.162, 0.151, 0.138], [0.058, 0.052, 0.048])
+    # 定义数据标准化变换，参数为均值和标准差
+    normalize = transforms.Normalize([0.229, 0.196, 0.143], [0.100, 0.080, 0.066])
     # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
     train_transform = transforms.Compose([transforms.Resize((224,224)), transforms.ToTensor(), normalize])
     # 加载数据集，应用指定的变换
