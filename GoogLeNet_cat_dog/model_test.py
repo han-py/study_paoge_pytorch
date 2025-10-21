@@ -117,7 +117,7 @@ if __name__ == "__main__":
     model.load_state_dict(torch.load('best_model.pth'))
     # 利用现有的模型进行模型的测试
     test_dataloader = test_data_process()
-    test_model_process(model, test_dataloader)
+    # test_model_process(model, test_dataloader)
 
     # 设定测试所用到的设备，有GPU用GPU没有GPU用CPU
     device = "cuda" if torch.cuda.is_available() else 'cpu'
@@ -125,19 +125,19 @@ if __name__ == "__main__":
     # 定义类别标签
     classes = ['猫', '狗']
     
-    # 逐个样本进行测试并输出预测结果和真实标签
-    with torch.no_grad():
-        for b_x, b_y in test_dataloader:
-            b_x = b_x.to(device)
-            b_y = b_y.to(device)
-
-            # 设置模型为验证模型
-            model.eval()
-            output = model(b_x)
-            pre_lab = torch.argmax(output, dim=1)
-            result = pre_lab.item()
-            label = b_y.item()
-            print("预测值：",  classes[result], "------", "真实值：", classes[label])
+    # # 逐个样本进行测试并输出预测结果和真实标签
+    # with torch.no_grad():
+    #     for b_x, b_y in test_dataloader:
+    #         b_x = b_x.to(device)
+    #         b_y = b_y.to(device)
+    #
+    #         # 设置模型为验证模型
+    #         model.eval()
+    #         output = model(b_x)
+    #         pre_lab = torch.argmax(output, dim=1)
+    #         result = pre_lab.item()
+    #         label = b_y.item()
+    #         print("预测值：",  classes[result], "------", "真实值：", classes[label])
 
     # 加载单张图片进行测试
     image = Image.open('1.jfif')
