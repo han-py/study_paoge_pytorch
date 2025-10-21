@@ -25,7 +25,7 @@ import os
 import numpy as np
 
 # 文件夹路径，包含所有图片文件
-folder_path = 'data_cat_dog'
+folder_path = 'fruits'
 
 # 初始化累积变量
 total_pixels = 0

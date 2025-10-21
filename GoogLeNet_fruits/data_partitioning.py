@@ -22,8 +22,8 @@ def mkfile(file):
 
 
 # 获取原始数据文件夹下所有类别文件夹名（即需要分类的类名）
-# 注意：虽然变量名为flower_class，但实际处理的是猫狗图片分类
-file_path = 'data_cat_dog'
+# 注意：虽然变量名为flower_class，但实际处理的是水果图片分类
+file_path = 'fruits'
 flower_class = [cla for cla in os.listdir(file_path)]
 
 # 创建训练集train文件夹，并为每个类别在其目录下创建子目录
