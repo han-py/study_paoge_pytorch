@@ -54,7 +54,7 @@ def test_data_process():
     ROOT_TRAIN = r'data\test'
 
     # 定义数据标准化变换，参数为均值和标准差
-    normalize = transforms.Normalize([0.173, 0.151, 0.143], [0.074, 0.062, 0.059])
+    normalize = transforms.Normalize([0.042, 0.043, 0.044], [0.033, 0.034, 0.036])
     # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
     test_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), normalize])
     # 加载数据集，应用指定的变换
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else 'cpu'
     model = model.to(device)
     # 定义类别标签
-    classes = ['mask', 'no_mask']
+    classes = ['Arborio', 'Basmati', 'Ipsala', 'Jasmine', 'Karacadag']
     
     # # 逐个样本进行测试并输出预测结果和真实标签
     # with torch.no_grad():
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     image = Image.open('no_mask.jfif')
 
     # 定义图像预处理方法
-    normalize = transforms.Normalize([0.173, 0.151, 0.143], [0.074, 0.062, 0.059])
+    normalize = transforms.Normalize([0.042, 0.043, 0.044], [0.033, 0.034, 0.036])
     # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
     test_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), normalize])
     image = test_transform(image)
