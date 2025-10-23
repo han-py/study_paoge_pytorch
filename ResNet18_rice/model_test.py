@@ -139,23 +139,23 @@ if __name__ == "__main__":
     #         label = b_y.item()
     #         print("预测值：",  classes[result], "------", "真实值：", classes[label])
 
-    # 加载单张图片进行测试
-    image = Image.open('no_mask.jfif')
-
-    # 定义图像预处理方法
-    normalize = transforms.Normalize([0.042, 0.043, 0.044], [0.033, 0.034, 0.036])
-    # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
-    test_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), normalize])
-    image = test_transform(image)
-
-    # 添加批次维度，因为模型需要批次输入
-    image = image.unsqueeze(0)
-
-    # 进行预测
-    with torch.no_grad():
-        model.eval()
-        image = image.to(device)
-        output = model(image)
-        pre_lab = torch.argmax(output, dim=1)
-        result = pre_lab.item()
-    print("预测值：",  classes[result])
+    # # 加载单张图片进行测试
+    # image = Image.open('no_mask.jfif')
+    #
+    # # 定义图像预处理方法
+    # normalize = transforms.Normalize([0.042, 0.043, 0.044], [0.033, 0.034, 0.036])
+    # # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
+    # test_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), normalize])
+    # image = test_transform(image)
+    #
+    # # 添加批次维度，因为模型需要批次输入
+    # image = image.unsqueeze(0)
+    #
+    # # 进行预测
+    # with torch.no_grad():
+    #     model.eval()
+    #     image = image.to(device)
+    #     output = model(image)
+    #     pre_lab = torch.argmax(output, dim=1)
+    #     result = pre_lab.item()
+    # print("预测值：",  classes[result])
