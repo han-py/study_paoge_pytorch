@@ -1,6 +1,6 @@
 """
 FashionMNIST测试脚本
-该脚本用于加载训练好的GoogLeNet模型，并在FashionMNIST测试集上进行测试
+该脚本用于加载训练好的ResNet18模型，并在FashionMNIST测试集上进行测试
 输出每个样本的预测结果和真实标签，便于观察模型表现
 """
 
@@ -12,8 +12,8 @@ from torchvision.datasets import FashionMNIST
 # 导入PyTorch的数据加载工具
 import torch.utils.data as Data
 
-# 导入自定义的GoogLeNet模型
-from GoogLeNet.model import GoogLeNet, Inception
+# 导入自定义的ResNet18模型
+from ResNet18.model import ResNet18, Residual
 
 
 def test_data_process():
@@ -94,8 +94,8 @@ def test_model_process(model, test_dataloader):
 
 # 程序入口点
 if __name__ == '__main__':
-    # 创建GoogLeNet模型实例
-    model = GoogLeNet(Inception)
+    # 创建ResNet18模型实例
+    model = ResNet18(Residual)
     # 加载训练好的模型权重，使用weights_only=True提高安全性
     model.load_state_dict(torch.load('best_model.pth', weights_only=True))
 
