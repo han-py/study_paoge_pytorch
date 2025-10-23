@@ -267,6 +267,6 @@ if __name__ == '__main__':
     # 加载数据集
     train_data, val_data = train_val_data_process()
     # 利用现有的模型进行模型的训练
-    train_process = train_model_process(ResNet18, train_data, val_data, num_epochs=50)
+    train_process = train_model_process(ResNet18, train_data, val_data, num_epochs=20)
     # 绘制训练过程中的准确率和损失变化图
     matplot_acc_loss(train_process)
