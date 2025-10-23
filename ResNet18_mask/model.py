@@ -88,7 +88,7 @@ class ResNet18(nn.Module):
         super(ResNet18, self).__init__()
         # 第一个块：7x7卷积 + 批归一化 + ReLU + 3x3最大池化
         self.b1 = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=64, kernel_size=7, stride=2, padding=3),
+            nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3),
             nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
