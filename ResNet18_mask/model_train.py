@@ -1,5 +1,5 @@
 """
-GoogLeNet模型训练脚本
+ResNet18模型训练脚本
 
 关键函数参数说明：
 =================
@@ -41,8 +41,8 @@ import torch.utils.data as Data
 import numpy as np
 # matplotlib.pyplot用于绘制图表
 import matplotlib.pyplot as plt
-# 导入自定义的GoogLeNet模型和Inception模块
-from model import GoogLeNet, Inception
+# 导入自定义的ResNet18模型和Residual模块
+from model import ResNet18, Residual
 # nn是构建神经网络的基础模块
 import torch.nn as nn
 # pandas用于数据处理和分析
@@ -60,7 +60,7 @@ def train_val_data_process():
     ROOT_TRAIN = r'data\train'
 
     # 定义数据标准化变换，参数为均值和标准差
-    normalize = transforms.Normalize([0.229, 0.196, 0.143], [0.100, 0.080, 0.066])
+    normalize = transforms.Normalize([0.173, 0.151, 0.143], [0.074, 0.062, 0.059])
     # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
     train_transform = transforms.Compose([transforms.Resize((224,224)), transforms.ToTensor(), normalize])
     # 加载数据集，应用指定的变换
@@ -263,10 +263,10 @@ def matplot_acc_loss(train_process):
 # 主程序入口
 if __name__ == '__main__':
     # 加载需要的模型
-    GoogLeNet = GoogLeNet(Inception)
+    ResNet18 = ResNet18(Residual)
     # 加载数据集
     train_data, val_data = train_val_data_process()
     # 利用现有的模型进行模型的训练
-    train_process = train_model_process(GoogLeNet, train_data, val_data, num_epochs=50)
+    train_process = train_model_process(ResNet18, train_data, val_data, num_epochs=50)
     # 绘制训练过程中的准确率和损失变化图
     matplot_acc_loss(train_process)

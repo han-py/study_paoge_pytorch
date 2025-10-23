@@ -1,7 +1,7 @@
 """
-GoogLeNet模型测试脚本
+ResNet18模型测试脚本
 
-该脚本用于测试训练好的GoogLeNet模型在猫狗分类任务上的性能。
+该脚本用于测试训练好的ResNet18模型在猫狗分类任务上的性能。
 
 关键函数参数说明：
 =================
@@ -35,8 +35,8 @@ import torch.utils.data as Data
 from torchvision import transforms
 # FashionMNIST为示例数据集（虽然本项目未使用）
 from torchvision.datasets import FashionMNIST
-# 导入自定义的GoogLeNet模型和Inception模块
-from model import GoogLeNet, Inception
+# 导入自定义的ResNet18模型和Residual模块
+from model import ResNet18, Residual
 # ImageFolder用于加载图像数据集
 from torchvision.datasets import ImageFolder
 # PIL用于图像处理
@@ -54,7 +54,7 @@ def test_data_process():
     ROOT_TRAIN = r'data\test'
 
     # 定义数据标准化变换，参数为均值和标准差
-    normalize = transforms.Normalize([0.229, 0.196, 0.143], [0.100, 0.080, 0.066])
+    normalize = transforms.Normalize([0.173, 0.151, 0.143], [0.074, 0.062, 0.059])
     # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
     test_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), normalize])
     # 加载数据集，应用指定的变换
@@ -112,7 +112,7 @@ def test_model_process(model, test_dataloader):
 # 主程序入口
 if __name__ == "__main__":
     # 加载模型
-    model = GoogLeNet(Inception)
+    model = ResNet18(Residual)
     # 加载训练好的模型参数
     model.load_state_dict(torch.load('best_model.pth'))
     # 利用现有的模型进行模型的测试
@@ -140,10 +140,10 @@ if __name__ == "__main__":
     #         print("预测值：",  classes[result], "------", "真实值：", classes[label])
 
     # 加载单张图片进行测试
-    image = Image.open('grape.jpg')
+    image = Image.open('no_mask.jfif')
 
     # 定义图像预处理方法
-    normalize = transforms.Normalize([0.229, 0.196, 0.143], [0.100, 0.080, 0.066])
+    normalize = transforms.Normalize([0.173, 0.151, 0.143], [0.074, 0.062, 0.059])
     # 定义数据集处理方法变量，包含调整大小、转换为张量和标准化
     test_transform = transforms.Compose([transforms.Resize((224, 224)), transforms.ToTensor(), normalize])
     image = test_transform(image)
