@@ -114,16 +114,16 @@ if __name__ == "__main__":
     # 加载模型
     model = ResNet18(Residual)
     # 加载训练好的模型参数
-    model.load_state_dict(torch.load('best_model.pth'))
+    model.load_state_dict(torch.load('best_model.pth', weights_only=True))
     # 利用现有的模型进行模型的测试
     test_dataloader = test_data_process()
-    # test_model_process(model, test_dataloader)
+    test_model_process(model, test_dataloader)
 
     # 设定测试所用到的设备，有GPU用GPU没有GPU用CPU
     device = "cuda" if torch.cuda.is_available() else 'cpu'
     model = model.to(device)
     # 定义类别标签
-    classes = ['apple', 'banana', 'grape', 'orange', 'pear']
+    classes = ['mask', 'no_mask']
     
     # # 逐个样本进行测试并输出预测结果和真实标签
     # with torch.no_grad():
